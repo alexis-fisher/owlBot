@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>City Finder</title>
+<link rel="stylesheet" href="stylesheets/style.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+$(document).ready(function() {
+$("#cityField").keyup(function() {
+  var value = $("#cityField").val();
+  var url = "../getcity?q="+value;
+  $.getJSON(url,function(data) {
+    var everything;
+    everything = "<ul>";
+    $.each(data, function(i,item) {
+      everything += "<li> "+data[i].city;
+    });
+    everything += "</ul>";
+    $("#txtHint").html(everything);
+  })
+  .done(function() { console.log('getJSON request succeeded!'); })
+  .fail(function(jqXHR, textStatus, errorThrown) { 
+    console.log('getJSON request failed! ' + textStatus); 
+    console.log("incoming "+jqXHR.responseText);
+  })
+  .always(function() { console.log('getJSON request ended!');
+  })
+  .complete(function() { console.log("complete"); });
+});
+
+$("#weatherButton").click(function(e){
+  var value = $("#cityField").val();
+  value = value.toLowerCase();
+  value= value.charAt(0).toUpperCase() + value.slice(1);
+  console.log(value);
+  e.preventDefault();
+  $("#displayCity").text(value);
+  var myurl = "../getcity?q="+value;
+  myurl += value;
+  myurl += ".json";
+  console.log(myurl);
+  $.ajax({
+    url : myurl,
+    dataType : "json",
+    success : function(parsed_json) {
+      var location = parsed_json['location']['city'];
+      var temp_string = parsed_json['current_observation']['temperature_string'];
+      var current_weather = parsed_json['current_observation']['weather'];
+      everything = "<ul>";
+      everything += "<li>Location: "+location;
+      everything += "<li>Temperature: "+temp_string;
+      everything += "<li>Weather: "+current_weather;
+      everything += "</ul>";
+      $("#weather").html(everything);
+    }
+  });
+});
+
+$("#searchButton").click(function(e) {
+  var term = $("#searchOwlbot").val();
+    term = term.toLowerCase();
+    var url = "../owlRoute?w="+term;
+    console.log(url);
+    $.getJSON(url, function(data) {
+      var html = "<ul>";
+      var items = data;
+      $.each(items, function(i, item) {
+        html += '<li>'
+        if (item['type'] !== null)
+          html += '<i>' + item['type'] + '</i>'
+        if (item['defenition'] !== null)
+          html += ' &mdash; ' + item['defenition']
+        if (item['example'] !== null)
+          html += '<br>Example: ' + item['example']
+          html += '</li>'
+      });
+      html += "</ul>";
+      $("#searchResults").html(html);
+    });
+  
+});
+
+
+
+});
+</script>
+
+
+</head>
+<body>
+<form id="cityForm">
+  Enter A Utah City: <input type="text" id="cityField" value=""><br>
+  Suggestion: <span id="txtHint">Empty</span>
+  <input id="weatherButton" type="submit" value="Submit">
+</form>
+
+<br><br>
+
+<form id="owlBotForm">
+  Search Owlbot: <input type="text" id="searchOwlbot" value=""><br>
+  <input id="searchButton" type="submit" value="Submit">
+  <div id="searchResults">No results</div>
+</form>
+
+
+
+</body>
+
+</html>
