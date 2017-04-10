@@ -1,26 +1,9 @@
-html {
-  background-color: white;
-  font-size: 16px;
-  text-rendering: optimizeLegibility;
-  margin: auto;
-}
-
-
 body,
 button,
 textarea {
   font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-
-body {
-  padding: 100px;
-  margin: auto;
-  color: #4a4a4a;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-}
 
 a {
   color: #00d1b2;
@@ -31,4 +14,46 @@ a {
 
 a:hover {
   color: #363636;
+}
+
+body{
+	margin:auto;
+	padding:0;
+	overflow:hidden;
+	position:relative;
+	height:100%;
+	width: 95%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-image:url(https://doowansnewsandevents.files.wordpress.com/2013/10/owl.jpg);
+        background-size: cover;
+}
+header{
+  background-color: rgb(255,255,255);
+  margin-bottom:20px;
+}
+
+button{
+  font-family:inherit;
+  font-size 100%;
+  color:#444;
+  border:1px solid #999;
+  background-color: #e6e6e6;
+  cursor:pointer;
+}
+
+li {
+	list-style-type: none;
+	margin-top: 2px;
+	margin-bottom:2px;
+	padding: 10px 10px 10px 20px;
+}
+
+#card{
+  margin:.5rem 0 1rem 0;
+  padding:24px;
+  padding-bottom:100px;
+  background-color:#fff;
+  transition:box-shadow .25s;
+  border-radius:2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 }
