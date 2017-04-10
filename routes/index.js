@@ -26,7 +26,7 @@ router.get('/getcity',function(req,res,next) {
   console.log(myRe);
 })
 
-router.get('/owlRoute',function(req,res,next){
+router.get('/word',function(req,res,next){
   var url = 'https://owlbot.info/api/v1/dictionary/' + req.query.w + '?format=json'
   https.get(url, function(owl) {
     owl.pipe(res)

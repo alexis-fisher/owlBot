@@ -60,7 +60,7 @@ $("#searchButton").click(function(e) {
   e.preventDefault();
   var term = $("#searchOwlbot").val();
     term = term.toLowerCase();
-    var url = "/owlRoute?w="+term;
+    var url = "/word?w="+term;
     console.log(url);
     $.getJSON(url, function(data) {
       var html = "<ul>";
