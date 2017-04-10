@@ -35,7 +35,7 @@ $("#weatherButton").click(function(e){
   console.log(value);
   e.preventDefault();
   $("#displayCity").text(value);
-  var myurl = "../getcity?q="+value;
+  var myurl = "https://api.wunderground.com/api/68659bc56f7ee448/geolookup/conditions/q/UT/";
   myurl += value;
   myurl += ".json";
   console.log(myurl);
@@ -93,7 +93,10 @@ $("#searchButton").click(function(e) {
   Suggestion: <span id="txtHint">Empty</span>
   <input id="weatherButton" type="submit" value="Submit">
 </form></div>
-
+<div id="card"><p>City</p>
+<textarea id="displayCity">No City</textarea>
+<p>Current Weather</p>
+<div id="weather">No weather</div></div>
 <br><br>
 
 <div id="card">
